@@ -1,40 +1,34 @@
-import * as React from 'react';
+import React, {useState} from 'react';
+import {Accordion} from "./Accordion";
+import {action} from "@storybook/addon-actions";
 
 export default {
     title: "Accordion",
-} ;
+    component: Accordion
+};
 
-type AccordionPropsType = {
-    titleValue: string
-    collapsed: boolean
-    onChange: () => void
+const callback = action("Header click");
+const onClickCallback = action("Item click");
+
+
+export const MenuCollapsedMode = () => <Accordion titleValue={"Menu"} collapsed={true} onChange={callback} items={[]}
+                                                  onClick={(onClickCallback)}/>
+
+export const UserUncollapsedMode = () => <Accordion titleValue={"Users"} collapsed={false} onChange={callback}
+                                                    items={[
+                                                        {title: "Minsk", value: "2kkk"},
+                                                        {title: "Vitebsk",value: "20kk"}
+                                                    ]}
+                                                    onClick={onClickCallback}/>
+
+
+export const ModeChanging = () => {
+    const [value, setValue] = useState<boolean>(true)
+
+    return <Accordion titleValue={"Mode Users"} collapsed={value} onChange={() => {
+        setValue(!value)
+    }} items={[
+        {title: "Minsk", value: "2kkk"},
+        {title: "Vitebsk", value: "20kk"}
+    ]} onClick={onClickCallback}/>
 }
-
-type AccordionTitlePropsType = {
-    title: string
-    onChange: () => void
-}
-
-const AccordionTitle = (props:AccordionTitlePropsType) => {
-    return(
-        <h3 onClick={(e) => props.onChange()}>--{props.title}--</h3>
-    )
-}
-
-const AccordionBody = () => {
-    return <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-    </ul>
-}
-
-export const Accordion = (props:AccordionPropsType) => {
-    return <div>
-        <AccordionTitle title={props.titleValue} onChange={props.onChange}/>
-        {!props.collapsed && <AccordionBody/>}
-    </div>
-}
-
-
-export const MenuCollapsedMode = () => <Accordion titleValue={"Menu"} collapsed={true} onChange={() => {}}/>
