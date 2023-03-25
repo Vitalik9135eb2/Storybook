@@ -1,30 +1,11 @@
 import React, {useState} from "react";
+import {Select} from "./Select";
 
 
 
 export default {
     title: "Select",
-
 };
 
-export const CustomSelect = () => {
-    const [value, setValue] = useState<boolean>(false)
+export const CustomSelect = () => <Select title={"Select Item"} items={["value 1", "value 2", "value 3"]}/>
 
-
-    const SelectBody = () =>{
-      return  <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-        </ul>
-    }
-
-    return(
-        <>
-            <div onClick={()=>{setValue(!value)}} >Select title</div>
-
-            {value && <SelectBody/>}
-        </>
-
-    )
-}
