@@ -1,0 +1,46 @@
+
+.selectWrap{
+    min-width: 300px;
+    width: fit-content;
+}
+
+.selectTitle {
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    padding: 4px 8px;
+    display: block;
+    position: relative;
+    cursor: pointer;
+}
+
+.selectTitle:after {
+    position: absolute;
+    content: "▼";
+    right: 8px;
+    top: 5px;
+    font-size: 14px;
+    color: #817f7f;
+}
+
+.selectTitle.active:after{
+    transform: rotate(180deg);
+}
+
+.selectList{
+    list-style-type: none;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    margin: 4px 0 0;
+    padding: 0 0;
+    cursor: pointer;
+}
+
+.selectList li {
+    padding: 4px 8px;
+}
+.selectList li:hover {
+    background-color: #1ea7fd;
+}
+.selectList li.active{
+    background-color: #1ea7fd;
+}

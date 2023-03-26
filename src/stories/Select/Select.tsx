@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import s from "./select.module.css"
 
 
 
@@ -6,6 +7,7 @@ import React, {useState} from "react";
 type SelectTitlePropsType = {
     title: string
     callback: () => void
+    class: string
 }
 
 type SelectBodyPropsType = {
@@ -20,13 +22,15 @@ type SelectType = {
 
 
 const SelectTitle = (props: SelectTitlePropsType) => {
-    return <span  onClick={props.callback}>{props.title}</span>
+    return <span className={props.class}  onClick={props.callback}>{props.title}</span>
 }
 
 const SelectBody = (props:SelectBodyPropsType) => {
+
     const items = props.items.map(el => <li onClick={()=>{props.callback(el)} } key={Math.random()}>{el}</li>)
+
     return(
-        <ul>
+        <ul className={s.selectList}>
             {items}
         </ul>
     )
@@ -44,12 +48,15 @@ export const Select = (props:SelectType) => {
     const itemCallback = (value:string) =>{
         setTitle(value)
         setActive(!active)
-
     }
 
+    const classNameTitle = !active ? `${s.selectTitle}` : `${s.selectTitle} + ${s.active}`
+
+
+
     return(
-        <div className="selectWrap">
-            <SelectTitle title={title} callback={callback }/>
+        <div className={s.selectWrap}>
+            <SelectTitle class={classNameTitle} title={title} callback={callback }/>
 
             {active && <SelectBody items={props.items} callback={itemCallback}/>}
         </div>
