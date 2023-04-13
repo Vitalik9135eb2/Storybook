@@ -36,3 +36,30 @@ export const Example1 = () => {
         </>
     )
 }
+
+
+export const SetTimeOutExample = () => {
+
+    console.log("Set time out Example ")
+
+    const [counter, setCounter] = useState(1)
+
+    const [secondCounter, setSecondCounter] = useState(2)
+
+    useEffect(()=> {
+
+        setInterval(() =>{
+            console.log("tick" + counter)
+            // setCounter(counter + 1) //dont work
+            setCounter(state => state + 1)
+        },1000)
+    },[])
+
+
+    return(
+
+        <>
+            <div>Number {counter} and Second number {secondCounter}</div>
+        </>
+    )
+}
