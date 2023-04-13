@@ -1,37 +1,38 @@
-import {useMemo, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 
 export default {
-    title: "UseState"
-}
-
-
-function generationData(){
-    console.log("genetration data")
-    return 1
+    title: "UseEffect"
 }
 
 export const Example1 = () => {
 
     console.log("Example 1")
 
-    // const startValue = generationData() // 1
+    const [counter, setCounter] = useState(1)
+    const [secondCounter, setSecondCounter] = useState(2)
 
-    // const startValue = useMemo(generationData, []) //2
-    // const [counter, setCounter] = useState(startValue) //1 and 2
+    useEffect(()=> {
+        console.log("useEffect every render")
+    })
 
-    // const [counter, setCounter] = useState(generationData) // 3
+    useEffect(()=> {
+        console.log("useEffect only first render")
+    }, [])
 
-    const [counter, setCounter] = useState(generationData)
+    useEffect(()=> {
+        console.log("useEffect first render and every counter change")
+    },[counter])
+
+
+    console.log("Example 3 - will be displayed before all useEffect")
 
 
     return(
 
         <>
-            {/*/!*<button onClick={() => setCounter(counter +1)}>+</button>*!/ //3*/}
-
-            <button onClick={() => setCounter(state => state + 1)}>+</button>
-
-            <div>{counter}</div>
+            <button onClick={() => setCounter(counter +1)}>+</button>
+            <button onClick={() => setSecondCounter(secondCounter +1)}>*</button>
+            <div>Number {counter} and Second number {secondCounter}</div>
         </>
     )
 }
