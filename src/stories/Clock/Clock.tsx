@@ -30,13 +30,23 @@ export const Clock = (props: PropsType) => {
 
     let view
 
+    const secondsStyle = {
+        transform: `rotate(${date.getSeconds() * 6}deg)`
+    };
+    const minutesStyle = {
+        transform: `rotate(${date.getMinutes()* 6}deg)`
+    };
+    const hoursStyle = {
+        transform: `rotate(${date.getHours()* 30}deg)`
+    };
+
     switch (props.mode) {
         case "analog":
             view = <div className={"clock"}>
                 <div className={"analog-clock"}>
-                    <div className={"dial seconds"}/>
-                    <div className={"dial minutes"}/>
-                    <div className={"dial hours"}/>
+                    <div className={"dial seconds"} style={secondsStyle} />
+                    <div className={"dial minutes"} style={minutesStyle} />
+                    <div className={"dial hours"} style={hoursStyle} />
                 </div>
             </div>
 
