@@ -38,15 +38,4 @@ export const Example1 = () => {
 
 
 
-export const Clock = () => {
-    const [date, setDate] = useState(new Date())
-
-    return(
-        <div>
-            <span>{date.getHours()}</span>:
-            <span>{date.getMinutes()}111</span>:
-            <span>{date.getSeconds()}</span>
-        </div>
-    )
-}
 
